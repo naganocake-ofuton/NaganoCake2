@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   # before_action :set_item, only: [:show, :edit, :update]
-  # before_action :set_genres, only: [:new, :edit, :index, :create, :update]
+  before_action :set_genres, only: [:new, :edit, :index, :create, :update]
   # before_action :authenticate_admin!
 
   def top
@@ -27,6 +27,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
