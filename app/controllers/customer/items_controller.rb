@@ -1,5 +1,5 @@
 class Customer::ItemsController < ApplicationController
-  before_action :authenticate_customer!, only: [:show]
+  # before_action :authenticate_customer!, only: [:show]
 
   def top
     @items = Item.all.order(created_at: :asc)
