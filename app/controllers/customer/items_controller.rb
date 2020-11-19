@@ -1,11 +1,11 @@
 class Customer::ItemsController < ApplicationController
-  # before_action :authenticate_customer!, only: [:show]
+  before_action :authenticate_customer!, only: [:show]
 
   def top
     @items = Item.all.order(created_at: :asc)
     #=> :asc,古い順 :desc,新しい順
     @genres = Genre.all
-	end
+  end
 
 	def index
     @genres = Genre.all
