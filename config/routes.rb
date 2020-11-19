@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'customers/show'
-  get 'customers/quit'
-  get 'customers/out'
-  get 'customers/edit'
-  get 'customers/update'
+ 
   # admin
   devise_for :admins
   namespace :admin do
