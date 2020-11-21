@@ -16,11 +16,11 @@
           <% @cart_items.each do |cart| %>
             <tr>
               <td class="text-left">
-                <%= attachment_image_tag( cart.product, :image, size: "60x50", fallback: "") %>
+                <%= attachment_image_tag( cart.item, :image, size: "60x50", fallback: "") %>
                 <%= cart.item.name %>
               </td>
               <td class="text-right">
-                ¥<%= tax_price(cart.item.tax_out_price).to_s(:delimited) %>
+                ¥<%= tax_price(cart.item.price).to_s(:delimited) %>
               </td>
               <td class="text-right">
                   <%= cart.amount %>
@@ -82,7 +82,7 @@
     <% else %>
         <!-- if カートアイテムがない時 -->
         <p>お客様のショッピングカートに商品はありませんので注文確定ができません。</p>
-        <p><%= link_to "商品一覧", products_path %>から商品をお探し下さい。</p>
+        <p><%= link_to "商品一覧", items_path %>から商品をお探し下さい。</p>
     <% end %>
   </div>
 </div>
