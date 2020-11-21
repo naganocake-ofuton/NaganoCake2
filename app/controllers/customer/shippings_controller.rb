@@ -12,6 +12,7 @@ class Customer::ShippingsController < ApplicationController
     @shippings = current_customer.shipping
         if @shipping.save
 	    flash.now[:notice] = "新規配送先を登録しました"
+	    redirect_to request.referer
 	  # redirect_to customers_shipping_addresses_path
 	  # else
 	  # @shipping_addresses = current_customer.shipping_address

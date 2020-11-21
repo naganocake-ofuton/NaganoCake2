@@ -1,4 +1,4 @@
-class CartItemsController < ApplicationController
+class  Customer::CartItemsController < ApplicationController
      include ApplicationHelper
 
   before_action :set_cart_item, only: [:update, :destroy]
@@ -10,7 +10,7 @@ class CartItemsController < ApplicationController
 
 	def update
     @cart_item.update(quantity: params[:cart_item][:amount].to_i)
-    flash.now[:success] = "#{@cart_item.product.name}の数量を変更しました"
+    flash.now[:success] = "#{@cart_item.item.name}の数量を変更しました"
     @price = sub_price(@cart_item).to_s(:delimited)
     @cart_items = current_cart
     @total = total_price(@cart_items).to_s(:delimited)
@@ -21,17 +21,17 @@ class CartItemsController < ApplicationController
     @cart_item = current_customer.cart_items.new(params_cart_item)
 
       # カートの中に同じ商品が重複しないようにして　古い商品と新しい商品の数量を合わせる
-    @update_cart_item =  CartItem.find_by(product: @cart_item.product)
+    @update_cart_item =  CartItem.find_by(item: @cart_item.item)
     if @update_cart_item.present? && @cart_item.valid?
         @cart_item.amount += @update_cart_item.amount
         @update_cart_item.destroy
     end
 
     if @cart_item.save
-      flash[:notice] = "#{@cart_item.product.name}をカートに追加しました"
-      redirect_to products_path
+      flash[:notice] = "#{@cart_item.item.name}をカートに追加しました"
+      redirect_to items_path
     else
-      @product = Product.find(params[:cart_item][:item_id])
+      @item = Item.find(params[:cart_item][:item_id])
       @cart_item = CartItem.new
       flash[:alert] = "個数を選択してください"
       render ("customer/items/show")
