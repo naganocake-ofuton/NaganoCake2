@@ -27,7 +27,7 @@ class Admin::GenresController < ApplicationController
       flash[:success] = "ジャンルを変更しました"
       redirect_to admin_genres_path
       if @genre.is_active == false
-        @genre.items.each do |product|
+        @genre.items.each do |item|
           item.is_active = false
           item.save
         end

@@ -12,7 +12,7 @@ class Admin::OrderItemsController < ApplicationController
   end
 
   private
-  def order_detail_params
-		  params.require(:order_detail).permit(:produciton_status)
+  def order_item_params
+		  params.require(:order_item).permit(:making_status)
 	end
 end
