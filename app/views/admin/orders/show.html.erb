@@ -66,7 +66,7 @@
 			              <%= order_item.item.name %>
 			            </td>
 			            <td class="text-right">
-			              ¥<%= tax_price(order_item.item.tax_out_price).to_s(:delimited) %>
+			              ¥<%= tax_price(order_item.item.price).to_s(:delimited) %>
 			            </td>
 			            <td class="text-right">
 			              <%= order_item.amount %>
@@ -74,9 +74,9 @@
 			            <td class="text-right">
 			              ¥<%= sub_price(order_item).to_s(:delimited) %>
 			            </td>
-			            <%= form_for(order_item, url: admin_order_item_path(order_item), method: :patch) do |f| %>
+			            <%= form_for(order_item, url: admin_order_items_path(order_item), method: :patch) do |f| %>
 			            <td>
-			            	<%= f.select :is_active, OrderItems.is_actives.keys, class: "status" %>
+			            	<%= f.select :making_status, OrderItem.making_statuses.keys, class: "status" %>
 			            	<%= f.submit '更新'  ,class: "btn btn-warning" %>
 			            </td>
 			            <% end %>
@@ -90,7 +90,7 @@
 			<table class="table table-hover table-bordered table-condensed">
 				<tr>
             		<th class="info">商品合計</th>
-					<td>¥<%= total_price(@order_items).to_s(:delimited) %></td>
+					<td>¥<%= pay_amount(@order_items).to_s(:delimited) %></td>
 				</tr>
 				<tr>
 					<th class="info">送料</th>
@@ -98,7 +98,7 @@
 				</tr>
 				<tr>
 					<th class="info">請求金額合計</th>
-					<td>¥<%= @order.total_price.to_s(:delimited) %></td>
+					<td>¥<%= @order.pay_amount.to_s(:delimited) %></td>
 				</tr>
 		    </table>
 	  </div>

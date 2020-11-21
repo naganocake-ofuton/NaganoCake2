@@ -16,11 +16,11 @@
           <% @cart_items.each do |cart| %>
             <tr>
               <td class="text-left">
-                <%= attachment_image_tag( cart.product, :image, size: "60x50", fallback: "") %>
+                <%= attachment_image_tag( cart.item, :image, size: "60x50", fallback: "") %>
                 <%= cart.item.name %>
               </td>
               <td class="text-right">
-                ¥<%= tax_price(cart.item.tax_out_price).to_s(:delimited) %>
+                ¥<%= tax_price(cart.item.price).to_s(:delimited) %>
               </td>
               <td class="text-right">
                   <%= cart.amount %>
@@ -41,7 +41,7 @@
           </tr>
           <tr>
             <th class="info">商品合計</th>
-            <td class="text-right">¥<%= total_price(@cart_items).to_s(:delimited) %></td>
+            <td class="text-right">¥<%= pay_amount(@cart_items).to_s(:delimited) %></td>
           </tr>
           <tr>
             <th class="info">請求金額</th>
@@ -72,7 +72,7 @@
         <%= f.hidden_field :address %>
         <%= f.hidden_field :name %>
         <%= f.hidden_field :payment_method %>
-        <%= f.hidden_field :total_price %>
+        <%= f.hidden_field :pay_amount %>
         <%= f.hidden_field :ship, value: @ship %>
         <%= link_to "注文情報入力へ戻る", new_customers_order_path, data: {"turbolinks" => false}, class: "btn btn-info col-xs-3 back" %>
         　　<i class="fas fa-shipping-fast fa-2x"></i>
@@ -82,7 +82,7 @@
     <% else %>
         <!-- if カートアイテムがない時 -->
         <p>お客様のショッピングカートに商品はありませんので注文確定ができません。</p>
-        <p><%= link_to "商品一覧", products_path %>から商品をお探し下さい。</p>
+        <p><%= link_to "商品一覧", items_path %>から商品をお探し下さい。</p>
     <% end %>
   </div>
 </div>

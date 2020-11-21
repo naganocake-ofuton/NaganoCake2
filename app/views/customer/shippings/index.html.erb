@@ -5,7 +5,7 @@
         <div id="error">
           <%= render "layouts/error_messages", resource: @shipping %>
         </div>
-        <%= form_with(model: @shipping, :url => {:controller => "customer/shippings"}) do |f| %>
+        <%= form_with(model: @shipping, :url => {:controller => "customer/shippings"}, local: true) do |f| %>
             <div class="shipping_addres col-xs-10">
                 <div class="form-group col-xs-12">
                     <%= f.label :"郵便番号(ハイフンなし)" ,class: "col-xs-3 control-label" %>
@@ -52,7 +52,7 @@
                 <%= link_to "編集する",edit_customers_shipping_path(shipping), class: "glyphicon glyphicon-pencil btn-sm btn-primary" %>
              </td>
              <td>
-                <%= link_to "削除する",customers_shipping_path(shipping), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, local: true, class: "glyphicon glyphicon-trash btn-sm btn-danger" %>
+                <%= link_to "削除する",customers_shipping_path(shipping), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "glyphicon glyphicon-trash btn-sm btn-danger" %>
              </td>
             </tr>
            <% end %>
