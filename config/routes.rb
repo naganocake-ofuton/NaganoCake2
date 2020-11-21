@@ -30,8 +30,9 @@ Rails.application.routes.draw do
 
    scope module: :customer do
     resources :items,only: [:index,:show]
-
-  	resource :customers,only: [:show, :edit, :update] do
+    get 'customer/edit' => 'customers#edit'
+    put 'customer' => 'customers#update'
+  	resource :customers,only: [:show] do
   		collection do
   	     get 'quit'
   	     patch 'out'

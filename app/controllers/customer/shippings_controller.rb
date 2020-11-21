@@ -2,14 +2,14 @@ class Customer::ShippingsController < ApplicationController
    before_action :authenticate_customer!
 
   def index
-  	@shippings = current_customer.shipping
+  	@shippings = current_customer.shippings
   	@shipping = Shipping.new
   end
 
   def create
 	@shipping = Shipping.new(shipping_params)
 	@shipping.customer_id = current_customer.id
-    @shippings = current_customer.shipping
+    @shippings = current_customer.shippings
         if @shipping.save
 	    flash.now[:notice] = "新規配送先を登録しました"
 	    redirect_to request.referer
@@ -37,7 +37,7 @@ class Customer::ShippingsController < ApplicationController
   def destroy
 	@shipping = Shipping.find(params[:id])
 	@shipping.destroy
-    @shippings = current_customer.shipping
+    @shippings = current_customer.shippings
     flash.now[:alert] = "配送先を削除しました"
 	  # redirect_to customers_shipping_addresses_path
   end

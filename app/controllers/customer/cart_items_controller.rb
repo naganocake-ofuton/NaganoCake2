@@ -9,12 +9,12 @@ class  Customer::CartItemsController < ApplicationController
   end
 
 	def update
-    @cart_item.update(quantity: params[:cart_item][:amount].to_i)
+    @cart_item.update(amount: params[:cart_item][:amount].to_i)
     flash.now[:success] = "#{@cart_item.item.name}の数量を変更しました"
     @price = sub_price(@cart_item).to_s(:delimited)
     @cart_items = current_cart
     @total = total_price(@cart_items).to_s(:delimited)
-    # redirect_to customers_cart_items_path
+    redirect_to customers_cart_items_path
 	end
 
 	def create

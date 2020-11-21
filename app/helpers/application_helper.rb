@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   # 合計金額の計算
-  def total_price(totals)
+  def pay_amount(totals)
     price = 0
     totals.each do |total|
       price  +=  sub_price(total)
@@ -25,7 +25,7 @@ module ApplicationHelper
 
   # 請求額の計算
   def billing(order)
-    total_price(current_cart) + order.postage
+    pay_amount(current_cart) + order.postage
   end
 
   def full_title(title = "")

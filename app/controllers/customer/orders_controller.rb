@@ -6,7 +6,7 @@ class Customer::OrdersController < ApplicationController
 
   def new
   	@order = Order.new
-  	@shipping = Shipping.where(customer: current_customer)
+  	@shippings = Shipping.where(customer: current_customer)
   end
 
 	def confirm
@@ -27,7 +27,7 @@ class Customer::OrdersController < ApplicationController
                            current_customer.first_name
 
     # addressにshipping_addressesの値がはいっていれば
-    elsif params[:order][:addresses] == "shipping"
+    elsif params[:order][:addresses] == "shippings"
       ship = Shipping.find(params[:order][:shipping_id])
       @order.postcode = ship.postcode
       @order.address     = ship.address
@@ -42,7 +42,7 @@ class Customer::OrdersController < ApplicationController
 
       # バリデーションがあるならエラーメッセージを表示
       unless @order.valid? == true
-        @shipping = Shipping.where(customer: current_customer)
+        @shippings = Shipping.where(customer: current_customer)
         render :new
       end
     end
@@ -50,13 +50,13 @@ class Customer::OrdersController < ApplicationController
 
 	def create
     @order = current_customer.orders.new(order_params)
-    @order.save
+    @order.save!
     flash[:notice] = "ご注文が確定しました。"
     redirect_to complete_customers_orders_path
 
     # もし情報入力でnew_addressの場合ShippingAddressに保存
     if params[:order][:ship] == "1"
-      current_customer.shipping.create(address_params)
+      current_customer.shippings.create(address_params)
     end
 
     # カート商品の情報を注文商品に移動
