@@ -17,13 +17,13 @@
         </tr>
       </thead>
       <tbody>
-				<% @items.each do |product| %>
+				<% @items.each do |item| %>
   				<tr>
             <td class="info col-xs-1">
               <%= item.id %>
             </td>
             <td class="text-left">
-              <%= link_to admin_item_path(product), class: "btn-link" do %>
+              <%= link_to admin_item_path(item), class: "btn-link" do %>
                 <%= item.name %>
               <% end %>
             </td>
