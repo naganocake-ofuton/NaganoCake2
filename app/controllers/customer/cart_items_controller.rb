@@ -13,7 +13,7 @@ class  Customer::CartItemsController < ApplicationController
     flash.now[:success] = "#{@cart_item.item.name}の数量を変更しました"
     @price = sub_price(@cart_item).to_s(:delimited)
     @cart_items = current_cart
-    @total = total_price(@cart_items).to_s(:delimited)
+    @total = pay_amount(@cart_items).to_s(:delimited)
     redirect_to customers_cart_items_path
 	end
 
@@ -49,12 +49,12 @@ class  Customer::CartItemsController < ApplicationController
     @cart_item.destroy
     flash.now[:alert] = "#{@cart_item.item.name}を削除しました"
     @cart_items = current_cart
-    @total = total_price(@cart_items).to_s(:delimited)
+    @total = pay_amount(@cart_items).to_s(:delimited)
     # respond_to do |format|
     #   format.html{ redirect_to customers_cart_items_path }
     #   format.js
     # end
-    # redirect_to customers_cart_items_path
+    redirect_to customers_cart_items_path
 	end
 
   private
