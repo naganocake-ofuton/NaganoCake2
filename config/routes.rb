@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   # admin
-  devise_for :admins
+  devise_for :admins, :controllers => {
+    :sessions => 'admins/sessions',
+    :registrations => 'admins/registrations',
+    :passwords => 'admins/passwords'
+   }
   namespace :admin do
     resources :customers,only: [:index,:show,:edit,:update]
   	resources :items,only: [:index,:new,:create,:show,:edit,:update,]
