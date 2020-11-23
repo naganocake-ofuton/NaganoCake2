@@ -6,7 +6,7 @@
           <%= render "layouts/error_messages", resource: @shipping %>
         </div>
         <%= form_with(model: @shipping, :url => {:controller => "customer/shippings"}, local: true) do |f| %>
-            <div class="shipping_addres col-xs-10">
+            <div class="shipping col-xs-10">
                 <div class="form-group col-xs-12">
                     <%= f.label :"郵便番号(ハイフンなし)" ,class: "col-xs-3 control-label" %>
                     <%= f.text_field :postcode, class: "col-xs-4 form-control-static postcode" %>
