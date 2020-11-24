@@ -70,5 +70,5 @@ gem 'kaminari','~> 1.2.1'
 
 gem "jquery-rails"
 
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem "pry-byebug"
