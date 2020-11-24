@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
 
     #ログアウト時のパスの変更
     def after_sign_out_path_for(resource)
-      root_path
+      if customer_signed_in?
+        root_path
+      else
+        new_admin_session_path
+      end
     end
 
     # 新規登録の保存機能
@@ -25,7 +29,7 @@ class ApplicationController < ActionController::Base
   			 keys: [:first_name, :last_name, :first_name_kana, :last_name_kana,
                 :email, :postcode, :address, :telephone_number])
 
-      #sign_upの際にnameのデータ操作を許。追加したカラム。
+      #sign_upの際にnameのデータ操作を許可追加したカラム。
   		devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
 
     end
