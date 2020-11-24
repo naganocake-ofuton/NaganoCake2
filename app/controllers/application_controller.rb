@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
     end
 
     #ログアウト時のパスの変更
-    def after_sign_out_path_for(resource)
-      if customer_signed_in?
-        root_path
-      else
+    def after_sign_out_path_for(resource_or_scope)
+      if resource_or_scope == :admin
         new_admin_session_path
+      else
+        root_path
       end
     end
 
