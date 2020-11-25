@@ -1,7 +1,7 @@
 <h2 class="head-line title_h2 text-center">パスワードをお忘れですか？</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "customers/shared/error_messages", resource: resource %>
+  <%= render "layouts/error_messages", resource: resource %>
 
   <div class="field　form-group col-xs-6">
     <%= f.label :email, class: "col-sm-4 control-label" %>
@@ -17,4 +17,3 @@
 
 
 
- 
