@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     # ログイン時のパスを変更してる
     def after_sign_in_path_for(resource)
       if customer_signed_in?
-        customers_path(resource)
+        root_path
       else
         admin_top_path
       end
