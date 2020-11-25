@@ -27,7 +27,7 @@ class Customer::OrdersController < ApplicationController
                            current_customer.first_name
 
     # addressにshipping_addressesの値がはいっていれば
-    elsif params[:order][:addresses] == "shippings"
+    elsif params[:order][:addresses] == "shipping"
       ship = Shipping.find(params[:order][:shipping_id])
       @order.postcode = ship.postcode
       @order.address     = ship.address
