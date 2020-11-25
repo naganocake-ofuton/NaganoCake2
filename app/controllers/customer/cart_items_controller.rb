@@ -29,7 +29,7 @@ class  Customer::CartItemsController < ApplicationController
 
     if @cart_item.save
       flash[:notice] = "#{@cart_item.item.name}をカートに追加しました"
-      redirect_to items_path
+      redirect_to customers_cart_items_path
     else
       @item = Item.find(params[:cart_item][:item_id])
       @cart_item = CartItem.new
